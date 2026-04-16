@@ -1,0 +1,1469 @@
+# NPTEL AI: Knowledge Representation and Reasoning — ULTIMATE EXAM GUIDE
+
+> **Course:** Artificial Intelligence: Knowledge Representation And Reasoning  
+> **Strategy:** Most questions come from assignment questions — this guide covers ALL of them with detailed explanations!
+
+---
+
+## TABLE OF CONTENTS
+
+| # | Topic | Weeks |
+|---|-------|-------|
+| 1 | [Foundations of AI & Logic](#week-1) | Week 1 |
+| 2 | [Formal Logic, Inference & Proofs](#week-2) | Week 2 |
+| 3 | [Propositional Logic: Tableaux, Models & Natural Deduction](#week-3) | Week 3 |
+| 4 | [First-Order Logic (FOL)](#week-4) | Week 4 |
+| 5 | [Clause Form, CNF & Resolution Refutation](#week-5) | Week 5 |
+| 6 | [Logic Programming & Prolog](#week-6) | Week 6 |
+| 7 | [Prolog Execution, Negation & Rule-Based Systems](#week-7) | Week 7 |
+| 8 | [Knowledge Representation, RDF & Semantic Web](#week-8) | Week 8 |
+| 9 | [Description Logic (DL) & ALC](#week-9) | Week 9 |
+| 10 | [Conceptual Dependency (CD) Theory & Scripts](#week-10) | Week 10 |
+| 11 | [Planning (PAM), Frames & Inheritance Networks](#week-11) | Week 11 |
+| 12 | [Default Reasoning, Event Calculus & Epistemic Logic](#week-12) | Week 12 |
+| 13 | [MASTER CHEAT SHEET](#cheat-sheet) | All |
+| 14 | [TIPS, TRICKS & EXAM STRATEGY](#strategy) | All |
+
+---
+
+<a name="week-1"></a>
+## WEEK 1: FOUNDATIONS OF AI & LOGIC
+
+### Core Concepts
+
+**What is AI?**
+- AI is about building **autonomous persistent goal-directed programs** (not just any program)
+- Intelligent activity involves: **Perception** (making sense of signals), **Cognition** (reasoning with symbolic representations), **Planning** (making decisions to achieve goals)
+
+**Types of Reasoning:**
+- **Deduction:** From general to specific — guaranteed correct (All men are mortal + Socrates is a man → Socrates is mortal)
+- **Induction:** From specific to general — making generalizations
+- **Abduction:** From observations to best explanation — from domain knowledge
+
+**Key Knowledge Structures:**
+- **Situational Knowledge** = Scripts (Schank) + Frames (Minsky) — stereotypical scenarios
+- A **domain** in logic = a **universe of discourse** = a **set of individuals** a logic language can talk about
+
+**Winograd Schema:**
+- Sentence with one word changed → different meaning
+- Chosen from two sentences with only one word changed
+- Gives you two options for the answer
+- Involves **anaphora resolution** (resolving what "it" refers to)
+
+### Assignment 1 — Detailed Q&A
+
+**Q1: Sherlock Holmes was:**
+> **Answer:** A fictional character created by Arthur Conan Doyle + The main character of a series of detective stories
+> **Why:** This tests basic knowledge. Holmes represents logical reasoning — relevant to AI.
+
+**Q2: In AI, an intelligent agent is:**
+> **Answer:** An autonomous persistent goal-directed program
+> **Why:** Key distinction — not just "doing intelligent work" (humans do that) and not marketing agents. It must be autonomous, persistent, and goal-directed.
+
+**Q3: The different kinds of reasoning are:**
+> **Answer:** Making valid arguments using **deduction**, making plausible arguments using **abduction**, making generalizations using **induction**
+> **Why:** These are the three fundamental reasoning types. "Bargaining" and "pleading" are NOT reasoning types.
+
+**Q4: Expectations:**
+> **Answer:** Usually involve **abductive reasoning** from domain knowledge + Help us **process incoming information more efficiently**
+> **Why:** When you expect something, you're making predictions from past experience (abduction/domain knowledge).
+
+**Q5: Intelligent activity involves:**
+> **Answer:** Perception, Cognition, Planning
+> **Why:** NOT accounting. These three cover sensing, reasoning, and acting.
+
+**Q6: Labelling of images with names of objects:**
+> **Answer:** Involves **pattern recognition** + Is done effectively with **neural networks**
+> **Why:** Image labeling is a perception task (pattern matching), done by NNs — NOT logical reasoning.
+
+**Q7: The Winograd Schema:**
+> **Answer:** Sentence chosen from two with only one word changed + Gives two options + Involves anaphora resolution
+> **Why:** Classic AI test. E.g., "The trophy wouldn't fit because it was too *small/large*" — "it" refers to different things.
+
+**Q8: "The trophy would not fit in the brown suitcase because it was too small":**
+> **Answer:** What does "it" in the sentence refer to? (anaphora resolution)
+> **Why:** "it" is ambiguous — this is the whole point of Winograd Schema.
+
+**Q9: Why is natural language not desirable in formal logic?**
+> **Answer:** A large vocabulary in logic will require a proportional number of rules + We would not like to express the same fact in different ways
+> **Why:** Formal logic needs precision. NL has synonyms, ambiguity — these create problems.
+
+**Q10: A domain in logic:**
+> **Answer:** Is also known as a **universe of discourse** + Is a **set of individuals** a logic language can talk about
+> **Why:** Domain = what we're talking about. NOT "area of expertise of logicians."
+
+**Q11: Situational knowledge is:**
+> **Answer:** Knowledge of stereotypical situations in the world + Represented in **Scripts** (Schank) + Represented in **Frames** (Minsky) + Useful in understanding events using abduction
+> **Why:** Scripts and Frames are structured representations for situations. They use abduction to fill in unstated information.
+
+---
+
+<a name="week-2"></a>
+## WEEK 2: FORMAL LOGIC, INFERENCE & PROOFS
+
+### Core Concepts
+
+**Formal Logic:**
+- When we say logic is "formal" it means: **arguments in logic have rigour** + **a conclusion is acceptable based only on the form of the argument**
+- NOT about what domain the argument pertains to — form is all that matters!
+
+**Knowledge Base (KB):**
+- A KB = **a set of sentences all of which are accepted to be true** + **a set of premises or axioms**
+- NOT "basic knowledge to study CS" or "what Homo sapiens possess"
+
+**Entailment:**
+- Entailment = stating that a sentence α **is necessarily true** given a KB
+- NOT "possibly true" — entailment is about logical necessity
+
+**Proof:**
+- A proof in logic involves the **use of rules of inference on a given KB**
+- Also: **a syntactic process devoid of truth values of sentences** AND **devoid of meaning of sentences**
+- Proofs are purely mechanical/syntactic — they don't care about what symbols mean
+
+**Soundness & Completeness:**
+
+| Property | Definition |
+|----------|-----------|
+| **Sound** | Can derive **only true sentences** + Cannot derive **any false sentence** |
+| **Complete** | Can derive **all true sentences** |
+
+> [!IMPORTANT]
+> A **sound** logic machine: derives ONLY true sentences, cannot derive ANY false sentence.  
+> A **complete** logic machine: can derive ALL true sentences.
+
+**Valid Rule of Inference:**
+- Is the basis of **deductive inference**
+- Is based on a **tautological implication**
+- Is a **sound rule** of inference
+
+**Atomic Sentences in Propositional Logic (PL):**
+- Must be **declarative** (true or false)
+- Examples: "The giraffe is a vegetable" ✅, "The Moon is larger than the Sun" ✅
+- NOT: "Please pass the ketchup" (imperative), "This sentence is false" (paradox), "What did Biden say?" (question)
+
+### Assignment 2 — Detailed Q&A
+
+**Q1: "When we say that logic is formal, we mean that":**
+> **Answer:** Arguments in logic have rigour + A conclusion is acceptable based only on the form of the argument
+> **Why:** "Formal" = about the FORM, not the content/domain.
+
+**Q2: "By a knowledge base (KB) we mean":**
+> **Answer:** A set of sentences all of which are accepted to be true + A set of premises or axioms
+> **Why:** KB is our "ground truth" — the starting assumptions we reason from.
+
+**Q3: "Entailment entails":**
+> **Answer:** Stating that a sentence α is **necessarily true** given a KB
+> **Why:** Entailment (⊨) means logical consequence — necessarily true, not just possibly.
+
+**Q4: "A proof in logic":**
+> **Answer:** Involves the use of rules of inference on a given KB + Involves a syntactic process devoid of truth values + Involves a syntactic process devoid of meaning
+> **Why:** Proofs are syntactic manipulation — they work on symbols regardless of meaning.
+
+**Q5: "A sound logic machine":**
+> **Answer:** It can derive only true sentences + It cannot derive any false sentence
+> **Why:** Soundness = no false positives. Everything derived is actually true.
+
+**Q6: "A complete logic machine":**
+> **Answer:** It can derive all true sentences
+> **Why:** Completeness = no false negatives. Every truth is derivable.
+
+**Q7: "A valid rule of inference":**
+> **Answer:** Is the basis of a deductive inference + Is based on a tautological implication + Is a sound rule of inference
+> **Why:** Valid rules guarantee truth-preservation (soundness) based on tautologies.
+
+**Q8: "Atomic sentences in PL":**
+> **Answer:** "The giraffe is a vegetable" + "The Moon is larger than the Sun"
+> **Why:** Both are declarative (can be T or F). "Please pass the ketchup" is imperative; "This sentence is false" is paradoxical.
+
+**Q9: "If Amogh ran for 21km then he would be tired / Amogh is not tired / Therefore, he did not run for 21km":**
+> **Answer:** Y (Valid — this is Modus Tollens!)
+> **Why:** p⊃q, ¬q ⊢ ¬p. If running→tired, not tired → not running. Classic Modus Tollens.
+
+**Q10: "If the tea were to be cold then Shashank will not drink it / Shashank did not drink the tea / Therefore, the tea was cold":**
+> **Answer:** N (Invalid — this is Affirming the Consequent fallacy!)
+> **Why:** p⊃¬q, ¬q ⊬ p. Just because he didn't drink doesn't mean it was cold (could have other reasons).
+
+### Practice Assignment 2 — Key Questions
+
+**Atomic sentences in PL:**
+- "The sky is blue and the day is sunny" — uses connective AND, NOT atomic (uses one connective)
+- "The ant is black" — YES, atomic
+- "The ant is red" — YES, atomic
+- "The document is in London or Paris or Rome" — uses connective OR, NOT atomic
+
+**Boolean connectives:** AND (∧), OR (∨), IMPLIES (⊃), EQUIVALENCE (≡)
+
+**Commutative connectives:** AND (∧) and OR (∨) — NOT IMPLIES!
+- a ∧ b = b ∧ a ✅
+- a ∨ b = b ∨ a ✅
+- a ⊃ b ≠ b ⊃ a ❌
+
+**Associative connectives:** AND (∧), OR (∨), EQUIVALENCE (≡)
+
+**Truth Table for P ⊃ Q (MEMORIZE THIS!):**
+
+| P | Q | P ⊃ Q |
+|---|---|-------|
+| T | T | **T** |
+| T | F | **F** ← Only FALSE case! |
+| F | T | **T** |
+| F | F | **T** |
+
+> [!CAUTION]
+> **P ⊃ Q is FALSE only when P is TRUE and Q is FALSE.** This is the single most important truth table entry!
+
+**With P: "Simba is a lion" and Q: "Simba eats meat":**
+- P⊃Q means: "If Simba is a lion then Simba eats meat" / "Simba is not a lion or Simba eats meat"
+
+**Tautology check:** (P ⊃ (Q ⊃ R)) ⊃ ((P ⊃ Q) ⊃ (P ⊃ R)): **YES**, this is a tautology!
+
+**Equivalence: P ≡ Q = (P ⊃ Q) ∧ (Q ⊃ P)**
+Also: (¬P ∨ Q) ∧ (P ∨ ¬Q)
+
+**Expression ((P ∧ Q ∧ R) ⊃ S) = P ⊃ (Q ⊃ (R ⊃ S))** — currying / exportation law
+
+**Conditional (P ⊃ Q) can be read as:**
+- P implies Q ✅
+- if P then Q ✅
+- P only if Q ✅
+- Q if P ✅
+- Q provided that P ✅
+- P is a **sufficient** condition for Q ✅
+- Q is a **necessary** condition for P ✅
+
+**Binary connectives between P and Q:** There are **16** possible binary connectives (2^(2^2) = 16)
+
+---
+
+<a name="week-3"></a>
+## WEEK 3: PROPOSITIONAL LOGIC — TABLEAUX, MODELS & NATURAL DEDUCTION
+
+### Core Concepts
+
+**Well-formed Formulas (WFFs) of PL:**
+- Atomic propositions (P, Q, R) are WFFs
+- (P ∧ Q) ⊃ R ✅ — WFF
+- (P ∧ Q ⊃ S) ✅ — WFF
+- P ∧ S ❌ — only if properly parenthesized
+
+**Derivation from KB:**
+- Given KB = {P ∨ ¬R, (R ∧ T), (W ⊃ S), ((P ∧ S) ⊃ Q), (T ⊃ ¬S)}: can derive P, ¬S, ¬W
+
+**The Deduction Theorem:**
+- If one can prove β given α, this means that (α ⊃ β) can be derived
+- This connects proof-theoretic notion with semantic notion
+
+**Derived Rule of Inference:**
+- Is a rule that may or may not be sound
+- Can be added to existing rules **without any loss of correctness**
+- Can help in **reducing the length of some proofs**
+
+**Model:**
+- A model for a set of statements S = a valuation for the atomic propositions that makes **all the sentences in S true**
+
+**Tableau Method:**
+
+> [!IMPORTANT]
+> **Key Tableau Rules:**
+> - Eliminating a connective results in **further branching for some connectives** AND **linear extension for some connectives**
+> - ∧ (AND): **linear** expansion — extends the same branch
+> - ∨ (OR): **branching** expansion — creates two new branches  
+> - ⊃ (IMPLIES): **branching** (¬α | β)
+> - ¬∨: **linear** expansion
+> - ¬∧: **branching** expansion
+
+**Tableau Method — Satisfiability/Unsatisfiability:**
+- At least one branch should be a model for the KB to be **satisfiable**
+- All branches must be closed for the KB to be **unsatisfiable**
+- If no branch of the tableau being constructed for a formula is closed → it is **satisfiable**
+
+**Tableau Properties:**
+- Each branch is an **interpretation** of the KB
+- A branch can be closed with some binary connectives remaining
+- It is possible to have a KB where: there is only one linear branch, every node has exactly one child, there are no linear extensions (every node has exactly two children), there are no extensions (no children)
+
+### Assignment 3 — Detailed Q&A
+
+**Q1: Which are sentences of PL? (atomic set {P, Q, R, S})**
+> **Answer:** (P ∧ Q) ⊃ R, (P ∧ Q ⊃ R)
+> **Why:** These are properly formed. P ∧ S by itself may need parentheses.
+
+**Q2: KB = {P ∨ ¬R, (R ∧ T), (W ⊃ S), ((P ∧ S) ⊃ Q), (T ⊃ ¬S)} — What can be derived?**
+> **Answer:** P, ¬S, ¬W
+> **Why:** From (R ∧ T), get R and T. T ⊃ ¬S gives ¬S. P ∨ ¬R with R gives... wait, R is true, so ¬R is false, so from P ∨ ¬R with R true → P. W ⊃ S with ¬S: by Modus Tollens → ¬W. Q needs P ∧ S, but S is false, so can't derive Q.
+
+**Q3: KB = {P ∨ ¬S, (S ∧ W), (W ⊃ ¬R), ((P ∧ S) ⊃ Q)} — What can be derived?**
+> **Answer:** P, Q, ¬R, ¬S (partially correct — check each)
+> **Why:** From S ∧ W → S, W. W ⊃ ¬R → ¬R. P ∨ ¬S with S true → P. P ∧ S true → Q.
+
+**Q4: The Deduction Theorem states that:**
+> **Answer:** If one can prove β given α, this means that (α ⊃ β) can be derived
+> **Why:** This bridges the gap between proof (syntactic) and truth (semantic).
+
+**Q5: A derived rule of inference:**
+> **Answer:** Can be added to existing rules without any loss of correctness + Can help in reducing the length of some proofs
+> **Why:** Derived rules are proved correct from existing rules, so they maintain soundness.
+
+**Q6: A model for a set of statements S:**
+> **Answer:** Is a valuation for the atomic propositions that makes all the sentences in S true
+> **Why:** A model is a truth assignment that satisfies ALL sentences simultaneously.
+
+**Q7: Eliminating a connective from a sentence in a Tableau:**
+> **Answer:** Results in further branching for some connectives + Results in linear extension for some connectives
+> **Why:** AND → linear (both children on same branch); OR, IMPLIES → branching (two branches).
+
+**Q8: Let α, β, γ, δ be formulas. Conjunction (α ∧ β ∧ γ ∧ ¬δ):**
+> **Answer:** The conjunction is satisfiable + The conjunction is unsatisfiable
+> **Why:** Depends on specific formulas — need to check if any truth assignment works.
+
+**Q9: In the Tableau Method applied to a given KB:**
+> **Answer:** At least one branch should be a model for the KB to be satisfiable + All branches must be closed for the KB to be unsatisfiable
+
+**Q12: If no branch of the tableau is closed:**
+> **Answer:** α is satisfiable
+> **Why:** No closed branches = every branch gives a model = satisfiable.
+
+### Practice Assignment 3 — Key Questions
+
+**Representing ¬(A ∧ B ∧ ¬P ∨ Q) using only {¬, ∧}:**
+> Use De Morgan's: ¬(X ∨ Y) = ¬X ∧ ¬Y
+
+**What does {α1, α2, ..., αn} ⊢ β mean?**
+> {α1, α2, ..., αn} ENTAIL β — all are true AND β is necessarily true
+
+**What does {α1, α2, ..., αn} ⊨ β mean?**
+> {α1, α2, ..., αn} SEMANTICALLY entail β — in every model where all αi are true, β is also true
+
+**Proof justification rules (know these!):**
+- MP(i, j) — Modus Ponens from lines i, j
+- De-Morgan(i) — applying De Morgan's law to line i
+- Neg-Elim(i) — double negation elimination
+- ∧-Intro — combining two facts
+
+**KB entailment questions:** 
+- KB ≡ (P ∨ Q) → (P ∧ Q): Select correct form
+- D ≡ (P ∧ Q) → (P ∨ Q)
+
+**Tableau expansion rules — correct application:**
+- ¬(P ∧ Q) branches into ¬P | ¬Q
+- ¬(¬P ∧ Q) branches into P | ¬Q = ¬(P ⊃ ¬Q)
+
+**Modeling argument validity:**
+- Formalize premises as implications
+- Check if the argument form is a tautology
+- { ¬E ⊃ P, (¬H ∨ P) ⊃ ¬R } — model as: { R } therefore { E }
+
+---
+
+<a name="week-4"></a>
+## WEEK 4: FIRST-ORDER LOGIC (FOL)
+
+### Core Concepts — DEEP DIVE
+
+**Why FOL over PL?**
+- PL can't express relationships between objects
+- PL can't express generality ("all", "some")
+- FOL adds: **variables, quantifiers (∀, ∃), predicates, functions, constants**
+
+**FOL Language Components L(P, F, C):**
+- **P** = set of predicate symbols (properties/relations)
+- **F** = set of function symbols (maps objects to objects)
+- **C** = set of constant symbols (named objects)
+
+**Terms in FOL:**
+- Constants (Sneha, Jack, 5)
+- Variables (x, y, z)
+- Function applications: father(x), mother(Sneha), f(g(x))
+
+**Atomic Formula:** Predicate applied to terms: P(t1, t2, ..., tn)
+- Example: Loves(John, Mary), Tall(father(x))
+
+**Sentences vs Formulas:**
+- A **sentence** has NO free variables (every variable is bound by a quantifier)
+- A **formula** may have free variables
+
+**Quantifiers:**
+- **∀x** (for all x): Universal — statement holds for every object in the domain
+- **∃x** (there exists x): Existential — at least one object satisfies the condition
+
+**Interpretation I = ⟨D, {.}⟩:**
+- D = domain (set of objects)
+- {.} = mapping from symbols to domain elements/relations/functions
+
+**Unification:**
+- Process of finding substitutions that make two expressions identical
+- Unifiable: {P(x, a)} and {P(b, a)} with substitution {x/b}
+- NOT unifiable: {P(a, x)} and {P(b, y)} (constants a≠b clash)
+
+**Skolemization:**
+- Removes ∃ quantifiers by replacing existential variables with:
+  - **Skolem constants** (when not inside any ∀): ∃x P(x) → P(sk1)
+  - **Skolem functions** of enclosing ∀ variables: ∀x ∃y P(x,y) → P(x, f(x))
+
+> [!IMPORTANT]
+> **Skolem constant** = like a constant (maps to fixed element) + like a variable (mapping is unspecified) + DIFFERENT from variable because you can't determine its value by inference
+>
+> **Skolem function of variable y** means x was existentially quantified in the scope of universally quantified y
+
+**Modified Modus Ponens = Modus Ponens + Universal Instantiation**
+
+### Assignment 4 — Complete Q&A with Reasoning
+
+**Q1: First-order logic refers to elements in domain using:**
+> **Answer:** Using constant symbols + Using variable symbols + Using functions defined in the language
+> **Why:** Constants name specific objects, variables range over objects, functions map to objects. "Maintaining a registry" is NOT an FOL concept. "Predicates defined in language" describe properties, don't refer to elements.
+
+**Q2: When we define a predicate RichMan and have RichMan(suresh), we assert:**
+> **Answer:** RichMan is some subset of a domain D
+> **Why:** A predicate defines a SET of objects that satisfy it. RichMan(suresh) means Suresh ∈ {x | RichMan(x)}, and this set is a subset of D.
+
+**Q3: An atomic formula in FOL:**
+> **Answer:** Is a well-formed formula + Is the smallest unit that can have a truth value assigned to it
+> **Why:** Atomic formulas like P(x) are the building blocks. They don't have connectives (so not "all logical connectives") and they can't have only unary connective (that would be ¬P(x) which isn't atomic).
+
+**Q4: A variable x in an FOL formula ω:**
+> **Answer:** Must necessarily be in the scope of a quantifier if ω is a sentence + Can occur in the scope of more than one quantifier
+> **Why:** In a SENTENCE (closed formula), all variables must be quantified. A variable like x in ∀x∃y P(x,y) is in scope of ∀x. Variables CAN appear in nested quantifier scopes. But x CAN also be a constant symbol of language (that's different).
+
+**Q5: Which are sentences of FOL? (father, coach = functions; Tall = relation; Sneha = constant)**
+> **Answer:** Tall(father(x)) — NOT a sentence (x is free!), Tall(father(Sneha)) ✅, ∀y(Tall(father(Sneha))) ✅, ∃x(Tall(father(x))) ✅, ∀y(Tall(father(x)) ⊃ Tall(x)) — NOT a sentence (x is free!)
+> **Why:** A sentence requires ALL variables to be bound. Tall(father(Sneha)) has no variables → sentence. ∃x(Tall(father(x))) → x is bound → sentence.
+
+**Q6: Sentences of FOL with equality:**
+> **Answer:** father(Sneha) = coach(Sneha) ✅, ∃x(father(Sneha) = coach(x)) ✅, ∃x(father(Sneha) = coach(Sneha)) ✅, ∃x(father(x) = coach(x)) ✅, ∀x(father(Sneha) = coach(x)) ✅, ∀x(father(x) = coach(x)) ✅
+> **Why:** All variables are bound by quantifiers, and equality between terms is valid FOL.
+
+**Q7: Interpretation I determines truth value of:**
+> **Answer:** Formulas with terms only from F and C + Formulas with terms made up of free variables and constants
+> **Why:** An interpretation assigns meanings to constants and functions, but free variables need a variable assignment too. Actually, the interpretation + variable assignment together determine truth.
+
+**Q8: Which pairs of clauses are unifiable?**
+> **Answer:** {*Likes(*Z₂, anisa)}, {Likes(*Z₂, anisa)} ✅ — identical! {*Likes(*Z₂, X₁)}, {Likes(*Z₂, mother(*Z₂))} ✅ — X₁ → mother(*Z₂). {*Likes(*Z₂, X₁)}, {Likes(*Z₂, mother(anisa))} ✅ — X₁ → mother(anisa)
+> **Why:** Unification fails when constants clash or occurs check fails (x = f(x) → infinite loop).
+
+**Q9: Modified Modus Ponens combines:**
+> **Answer:** Modus Ponens and Universal Instantiation
+> **Why:** Regular MP: from P and P⊃Q derive Q. Modified MP first universally instantiates ∀x(P(x)⊃Q(x)) to P(a)⊃Q(a), then applies MP.
+
+**Q10: A Skolem constant:**
+> **Answer:** Is like a constant (maps to fixed element in domain D) + Is like a variable (mapping to element is not specified) + Is different from a variable (value cannot be determined by inference)
+> **Why:** Skolem constants are "witnesses" for existential claims — we know something exists but we don't know exactly which element.
+
+**Q11: If variable x is a Skolem function of variable y:**
+> **Answer:** x is existentially quantified in the scope of y which is universally quantified
+> **Why:** ∀y ∃x P(x,y) → P(f(y), y). The existential x depends on the universal y, so its witness is a FUNCTION of y.
+
+### FOL Representation Patterns — THE GOLDEN RULES
+
+> [!CAUTION]
+> **THE #1 EXAM TRAP: "All" vs "Some" representation**
+> 
+> | English | FOL | Connector |
+> |---------|-----|-----------|
+> | "All X are Y" | ∀x (X(x) **⊃** Y(x)) | IMPLICATION |
+> | "Some X are Y" | ∃x (X(x) **∧** Y(x)) | CONJUNCTION |
+> | "No X are Y" | ∀x (X(x) **⊃** ¬Y(x)) | IMPLICATION + NEG |
+> | "Only X are Y" | ∀x (Y(x) **⊃** X(x)) | REVERSED IMPLICATION |
+> 
+> **WHY "All" uses ⊃ and not ∧:**  
+> ∀x (Apple(x) ∧ Red(x)) means "EVERYTHING is an apple AND red" — WRONG!  
+> ∀x (Apple(x) ⊃ Red(x)) means "IF something is an apple THEN it is red" — CORRECT!
+> 
+> **WHY "Some" uses ∧ and not ⊃:**  
+> ∃x (Apple(x) ⊃ Red(x)) is trivially true (any non-apple satisfies it) — TOO WEAK!  
+> ∃x (Apple(x) ∧ Red(x)) means "there exists something that IS an apple AND IS red" — CORRECT!
+
+---
+
+<a name="week-5"></a>
+## WEEK 5: CLAUSE FORM, CNF & RESOLUTION REFUTATION
+
+### Core Concepts — DEEP DIVE
+
+**Forward vs Backward Chaining:**
+- **Forward Chaining:** Data-driven, starts from facts → derives new facts → reaches goal. Is **sound**.
+- **Backward Chaining:** Goal-driven, starts from goal → finds rules → checks if premises hold. Is **sound**.
+- Neither is guaranteed **complete** in general (for FOL) — but both are sound!
+
+**CNF (Conjunctive Normal Form):**
+- A formula is in CNF if it is a **conjunction of disjunctions of literals**
+- (A ∨ B) ∧ (¬C ∨ D) — YES, CNF
+- (A ∧ B) ∨ C — NO (disjunction of conjunctions = DNF!)
+- A ∨ B ∨ C — YES (single clause is trivially CNF)
+- A ∧ B ∧ C — YES (three unit clauses)
+
+**Conversion to CNF Steps:**
+1. Eliminate ≡: A ≡ B → (A ⊃ B) ∧ (B ⊃ A)
+2. Eliminate ⊃: A ⊃ B → ¬A ∨ B
+3. Push ¬ inward (De Morgan's): ¬(A ∧ B) → ¬A ∨ ¬B
+4. Distribute ∨ over ∧: A ∨ (B ∧ C) → (A ∨ B) ∧ (A ∨ C)
+
+**Clause Form (for FOL):**
+- All variables implicitly universally quantified
+- No existential quantifiers (removed by Skolemization)
+- No implications or biconditionals
+- Negation only on atomic formulas
+- Conjunction of clauses (each clause is disjunction of literals)
+
+**Resolution Refutation:**
+1. Convert KB to clause form
+2. **Negate the goal** (what you want to prove)
+3. Add negated goal to KB clauses
+4. Repeatedly resolve pairs of clauses
+5. If you derive **empty clause □** → the goal is **PROVED!**
+
+> [!WARNING]
+> **Resolution refutation does NOT always terminate in FOL!**  
+> - FOL is **semi-decidable**: if something is true, resolution will eventually find it  
+> - But if something is NOT true, resolution may run forever  
+> - This is because FOL is undecidable in general!
+
+### Assignment 5 — Complete Q&A with Reasoning
+
+**Q1: Select the correct options:**
+> **Answer:** Backward Chaining is sound + Forward Chaining is sound
+> **Why:** Both methods only derive logically entailed conclusions. Neither is "complete" in general. "Sound" = whatever I derive is correct.
+
+**Q2: Formulas that are in CNF:**
+> **Answer:** A ∨ B ∨ C ✅ (single clause), A ∧ B ∧ C ✅ (conjunction of unit clauses), (¬A ∨ B ∨ C) ∧ (¬C ∨ ¬D ∨ E) ✅ (conjunction of clauses)
+> **Why:** NOT (A ⊃ B) ∧ (B ⊃ A) — contains ⊃! NOT (¬A ∨ B ∨ C) ∧ (¬C ∨ ¬D ∨ E) only if properly structured.
+
+**Q3: Formulas in Clause Form:**
+> **Answer:** ∀x ∀y (¬Sees(x) ∨ ¬Owns(x,y) ∨ ¬Apple(y) ∨ Happy(y)) ✅ + ¬Sees(¬x) ∨ ¬Owns(¬x,¬y) ∨ ¬Apple(¬x) ∨ Happy(¬x) ✅
+> **Why:** Clause form = universal quantifiers only, disjunction of literals, negation only on atoms.
+
+**Q4: CNF of (A ∧ (B ⊃ C)) ∨ (A ∧ B ∧ D):**
+> **Answer:** A ∧ (A ∨ B) ∧ (A ∨ D) ∧ (A ∨ ¬B ∨ C) ∧ (B ∨ C ∨ D)
+> **Why:** Step by step: B ⊃ C = ¬B ∨ C. So (A ∧ (¬B ∨ C)) ∨ (A ∧ B ∧ D). Distribute ∨ over ∧ systematically.
+
+**Q5: FOL formula and Skolemized formula — correct Skolem form:**
+> **Answer:** ∃x∀y P(x,y) → P(sk1, y) ✅ (x not inside ∀, becomes constant) + ∀y∃x P(x,y) → P(sk1(y), y) ✅ (x inside ∀y, becomes function of y) + ∀y (∃(R(P(x,y) ∧ Q(x)) ⊃ R(y))) → ¬R(x,y) ∨ ¬Q(x) ∨ R(y) ✅
+> **Why:** Key rule: ∃ not under any ∀ → Skolem constant. ∃ under ∀y → Skolem function of y.
+
+**Q6: KB consistency:**
+> **Answer:** KB1 is inconsistent and KB2 is consistent
+> **Why:** KB1 = {(A ∨ B), (A ∨ ¬C), (F ⊃ ¬A), (B ∧ C ⊃ B)} — check for contradiction. KB2 = {(A ∧ B), (A ∨ ¬C), (F ⊃ D), (B ⊃ D), (B ∧ D ⊃ B)} — consistent.
+
+**Q7: Clauses corresponding to equality axioms:**
+> **Answer:** (x = x) [reflexivity], ¬(x = y) ∨ (y = x) [symmetry], ¬(x = y) ∨ ¬(y = z) ∨ x = z [transitivity]
+> **Why:** These are the three equality axioms in clause form.
+
+**Q8: Resolvents from unifying two clauses:**
+> Multiple correct resolvents are generated from the unification.
+
+**Q9: KB3 resolution (House, Owner, Taxpayer):**
+> **Answer:** House(sk, Jack) ✅ + Owner(sk, Jack) ✅ + Taxpayer(Jack) ✅ + ¬House(x) ∨ ¬Owner(x, x) ∨ Taxpayer(x) ✅
+> **Why:** Resolving clauses in KB3 derives these facts about Jack.
+
+**Q10: KB3 entailments:**
+> **Answer:** KB3 entails Taxpayer(Jack) ✅ + KB3 entails Landlord(Jack) ✅
+> **Why:** Resolution refutation with negated goals derives □ for both.
+
+**Q11: Resolution refutation on any set of clauses in FOL:**
+> **Answer:** None of the above (does NOT always terminate!)
+> **Why:** FOL is semi-decidable. Resolution may loop forever on valid inputs. It doesn't always produce unique proof/disproof.
+
+---
+
+<a name="week-6"></a>
+## WEEK 6: LOGIC PROGRAMMING & PROLOG
+
+### Core Concepts — DEEP DIVE
+
+**Horn Clauses:**
+- A clause with **at most one positive literal**
+- Written as: A :- B1, B2, ..., Bn (Head :- Body)
+- **Definite clause:** exactly one positive literal (a rule or fact)
+- **Goal clause:** zero positive literals (a query)
+- Horn Clauses when written as logical implication: head has at most one positive literal, body is conjunction of zero or more positive literals
+
+> [!IMPORTANT]
+> **NOT all FOL formulas can be expressed as Horn Clauses!**
+> Example: A ∨ B (two positive literals) is NOT a Horn clause.
+
+**SLD Resolution:**
+- **S**election rule, **L**inear resolution, **D**efinite clauses
+- Used by Prolog for computation
+- Does NOT always terminate (can loop on recursive predicates)
+- Uses depth-first search with backtracking
+
+**Prolog Basics:**
+- **Facts:** `parent(tom, bob).` (tom is parent of bob)
+- **Rules:** `grandparent(X, Z) :- parent(X, Y), parent(Y, Z).`
+- **Queries:** `?- grandparent(tom, X).`
+- Variables start with UPPERCASE, atoms start with lowercase
+- Lists: `[H|T]` = head H and tail T, `[]` = empty list
+
+**Key Prolog Predicates:**
+- `member(X, [X|_]).` and `member(X, [_|T]) :- member(X, T).`
+- `append([], L, L).` and `append([H|T], L, [H|R]) :- append(T, L, R).`
+- `length([], 0).` and `length([_|T], N) :- length(T, M), N is M+1.`
+
+### Assignment 6 — Complete Q&A with Reasoning
+
+**Q1: Correct statements about Horn Clauses:**
+> **Answer:** Disjunction of literals with at most one positive literal and zero or more negative literals ✅ + Horn Clauses, when written as a logical implication, have a head and a body, where the head has at most one positive literal and the body is a conjunction of zero or more positive literals ✅
+> **Why:** Horn clause = ¬B1 ∨ ¬B2 ∨ ... ∨ A = B1 ∧ B2 ∧ ... ⊃ A.
+
+**Q2: Converting to clause form using rule of substitution:**
+> Trace the conversion carefully. Remember: P ⊃ Q becomes ¬P ∨ Q, then Skolemize, then drop ∀.
+
+**Q3: SWI Prolog predicate unification:**
+> Various predicates related to list processing — understand pattern matching.
+
+**Q4: Natural numbers using zero and successor (s(0), s(s(0)), ...):**
+> **insertHead** is the correct definition for inserting at the head of a list represented with successor notation.
+
+**Q5: Predicate for length of a list:**
+> **Answer:** s(l, rl) — using successor notation s() for numbers
+
+**Q6: Predicate for sum of elements:**
+> **Answer:** sl, rl) — addition using successor arithmetic
+
+**Q7-Q11: Prolog program completion (common data):**
+> snakes rule body: `sameas(A, B)`, predOf rule body: specific predicate, etc.
+
+**Q12: Total number of solutions in Prolog findall:**
+> **Answer:** 8
+> **Why:** Count all possible solutions via backtracking.
+
+**Q13: Critical true/false:**
+> **Answer:** None of the above (all given options are FALSE!)
+> - "All FOL formulas can be expressed as Horn Clauses" — **FALSE** (disjunctive facts can't be Horn)
+> - "SLD resolution always terminates" — **FALSE** (can loop forever)
+> - "SLD resolution always terminates with a contradiction" — **FALSE**
+
+---
+
+<a name="week-7"></a>
+## WEEK 7: PROLOG EXECUTION, NEGATION & RULE-BASED SYSTEMS
+
+### Core Concepts — DEEP DIVE
+
+**Negation by Failure (`\+`):**
+- `\+X` succeeds when ALL attempts to prove X **fail**
+- `\+X` fails when at least one attempt to prove X **succeeds**
+- This is NOT classical logical negation — it only means "not provable"
+
+**Cut (!):**
+- Prevents backtracking past the cut point
+- **Green cut:** Doesn't change the program's behavior (performance optimization)
+- **Red cut:** Changes what solutions are found (changes semantics)
+
+**Tabling (Memoization):**
+- Stores already-computed results to avoid re-computation
+- Critical for programs that don't terminate without it
+- Without tabling, some recursive programs loop forever
+
+**Rule-Based Systems / Production Systems:**
+- **Working Memory (WM):** Facts currently known
+- **Production Rules:** IF condition THEN action
+- **Conflict Resolution:** When multiple rules match, which fires?
+
+**Conflict Resolution Strategies:**
+| Strategy | Rule |
+|----------|------|
+| **PRIORITY** | Fire rule with highest priority number |
+| **RECENCY** | Fire rule matching the most recently added WM element |
+| **SPECIFICITY** | Fire rule with most conditions |
+
+**Top-level independence:** Refers to restarting the same code/rule pair from firing again and again, and blocking repeated firings.
+
+### Assignment 7 — Complete Q&A with Reasoning
+
+**Q1: Regular goals and SLD resolution (Proof 1-4):**
+> **Answer:** Both proofs use SLD resolution / Proof 1 uses SLD but Proof 2 does not
+> **Why:** SLD resolution = select a goal, find a matching rule head, replace with body. Check if each proof follows this pattern.
+
+**Q2: `\+X` (negation by failure) in Prolog:**
+> **Answer:** Returns true when all attempts to prove X fail + Returns false when at least one attempt succeeds
+> **Why:** "Not provable" ≠ "false" — this is the closed world assumption.
+
+**Q3: Prolog program tracing:**
+> Trace execution step by step — track goals, unification, backtracking.
+
+**Q4: Consult predicates with cut (!):**
+> **Answer:** consult(1,1) contains red cut + consult(1,2) contains green cut
+> **Why:** Red cut changes outputs; green cut only optimizes performance.
+
+**Q5: Prolog program WITHOUT tabling:**
+> **Answer:** None of the above (does NOT terminate without tabling!)
+> **Why:** Without memoization, left-recursive predicates cause infinite loops.
+
+**Q6: Top-level independence:**
+> **Answer:** Restarting the same code/rule pair + Reducing non-matching predicates + Blocking repeated firings
+
+**Q7: Working Memory — best value of `new-default`:** → **4**
+
+**Q8: Best value of x:** → **4** (Type: Number)
+
+**Q9: Regular Fire rule characteristics:**
+> **Answer:** It has equal footing + Pointers: text is full + Power is between 100 and 200 hp
+
+**Q10: First round conflict set:**
+> **Answer:** Greedycar: rule_194, 200, 1100 + MediumCar: rule_201, 201, 1390
+
+**Q11: PRIORITY conflict resolution — which rule fires?**
+> **Answer:** PRIORITY selects highest priority → rule_145, 210, 224
+
+**Q12: RECENCY conflict resolution — which rule fires?**
+> **Answer:** GainerCar (rule_249, 201, 1310) — matches most recent WM element
+
+---
+
+<a name="week-8"></a>
+## WEEK 8: KNOWLEDGE REPRESENTATION, RDF & SEMANTIC WEB
+
+### Core Concepts — DEEP DIVE
+
+**Knowledge Representation (KR):**
+- The process of encoding knowledge about the world in a form that a computer can use
+- Various formalisms: Logic, Semantic Networks, Frames, RDF, Description Logic
+
+**Semantic Networks:**
+- Graph-based representation
+- Nodes = concepts/objects
+- Edges = relationships (IS-A, HAS-A, etc.)
+
+**RDF (Resource Description Framework):**
+- Everything is described as **triples**: (Subject, Predicate, Object)
+- Elements: **Entities, Properties, Resources, Statements**
+- Written in **Turtle format**: `:subject :predicate :object .`
+
+**RDFS (RDF Schema):**
+- Extends RDF with typing: `rdf:type`, `rdfs:Class`, `rdfs:subClassOf`
+- `:thing rdf:type rdfs:Class` → thing is a class
+- `:poet rdfs:range :poet` → range restriction
+
+**Relations in FOL:**
+- **Binary relation:** relates two elements (sibling, parent)
+- **Transitive:** if aRb and bRc then aRc
+- **Symmetric:** if aRb then bRa
+- **Reflexive:** aRa for all a
+- **Irreflexive:** NOT aRa for any a
+
+**Monotonic Property:**
+- FOL is **monotonic**: adding new information NEVER invalidates existing conclusions
+- If KB ⊨ α, then KB ∪ {β} ⊨ α (new info doesn't change old conclusions)
+- Some domains require **non-monotonic reasoning** (where new info CAN change conclusions)
+
+### Assignment 8 — Complete Q&A with Reasoning
+
+**Q1: FOL representation of "All apples are red":**
+> **Answer:** ∀x(Apple(x) ⊃ Red(x))
+> **Why:** "ALL" → ∀ with IMPLICATION. NOT ∀x(Apple(x) ∧ Red(x)) which says everything is an apple AND red!
+
+**Q2: FOL representation of "Some apples are red":**
+> **Answer:** ∃x(Apple(x) ∧ Red(x))
+> **Why:** "SOME" → ∃ with CONJUNCTION. NOT ∃x(Apple(x) ⊃ Red(x)) which is trivially true for any non-apple!
+
+> [!CAUTION]
+> **MEMORIZE THIS PATTERN — IT WILL BE ON THE EXAM:**
+> - **"All X are Y"** = ∀x(X(x) **⊃** Y(x)) — IMPLICATION
+> - **"Some X are Y"** = ∃x(X(x) **∧** Y(x)) — CONJUNCTION
+> - These are the OPPOSITE connectives from what you might intuitively guess!
+
+**Q3: Properties of the sibling relation:**
+> **Answer:** Binary relation ✅ + Transitive relation ✅ + Irreflexive relation ✅
+> **Why:** Sibling is between two people (binary). If A is sibling of B and B of C, then A is sibling of C (transitive). You can't be your own sibling (irreflexive). NOT symmetric in all definitions, NOT ternary.
+
+**Q4: FOL for grandfather relation GF(x,y):**
+> **Answer:** ∀x∀y(GF(x,y) ≡ ∃z(Father(x,z) ∧ Parent(z,y)))
+> **Why:** x is grandfather of y means: there exists z such that x is father of z AND z is parent of y. Need ∃z for the intermediate person.
+
+**Q5: FOL of "All students enroll for courses":**
+> **Answer:** ∀x(Student(x) ⊃ ∃y(Enroll(x,y) ∧ Course(y)))
+> **Why:** "All students" → ∀x with ⊃. "Enroll for courses" → ∃y (at least one course). The course must EXIST and they must enroll in it.
+
+**Q6: FOL of "Squares are rectangles and rectangles are quadrilaterals":**
+> **Answer:** ∀x(Square(x) ⊃ Rectangle(x)) ∧ ∀x(Rectangle(x) ⊃ Quadrilateral(x))
+> **Why:** Two separate "All X are Y" statements joined by ∧.
+
+**Q7: Monotonic property — domain about people, ages, teenagers:**
+> **Answer:** This domain can be modeled in FOL + This domain violates the monotonic property of FOL
+> **Why:** Age changes over time — a teenager becomes an adult. This violates monotonicity because a fact that was true (is_teenager(X)) becomes false.
+
+**Q8: Interpretation satisfaction:**
+> **Answer:** {P(a,b), Q(a), R(a,b)} ✅ + {P(a,b), Q(b), R(a,b)} ✅ + {P(b,a), Q(b), R(b,a)} ✅ + {R(a,b)} ✅
+> **Why:** Check ∀x∀y[P(x,y) ∧ Q(x,z) ⊃ R(x,y)] for each set. R(a,b) alone trivially satisfies (no P facts to trigger the antecedent).
+
+**Q9: Chess match semantic representation:**
+> **Answer:** Match(WCM21) ∧ Player(WCM21, Nepo) ∧ Player(WCM21, Carlsen) ∧ Year(WCM21, 2021) ∧ City(WCM21, Dubai)
+> **Why:** Reification — treat the match as an object (WCM21 is constant), attach properties.
+
+**Q10: RDF/RDFS elements for modeling a domain:**
+> **Answer:** Entities ✅ + Properties ✅ + Resources ✅ + Statements ✅
+> **Why:** RDF models everything as resources (subjects/objects), properties (predicates), statements (triples). NOT "Primary Keys" or "Relationships" (those are DB concepts).
+
+**Q11: `:thing :poet :laiz-dilwara` from the lecture:**
+> **Answer:** It is a triple ✅ + It is a statement ✅ + It is an edge in a semantic graph ✅ + It follows Turtle format ✅
+> **Why:** In RDF, every triple is a statement and corresponds to an edge in the RDF graph. Turtle is the syntax for writing triples.
+
+**Q12: RDF/RDFS document inference:**
+> **Answer:** :thing is an instance of :thing ✅ + :laiz-dilwara is an instance of :poet ✅ + :poet is a property ✅ + :thing is an instance of rdfs:Resource ✅
+> **Why:** In RDFS, everything is an rdfs:Resource. Class instances are defined by rdf:type. Properties connect resources.
+
+---
+
+<a name="week-9"></a>
+## WEEK 9: DESCRIPTION LOGIC (DL) & ALC
+
+### Core Concepts — DEEP DIVE
+
+**Description Logic (DL):**
+- A family of logics for **knowledge representation**
+- More expressive than propositional logic, less than FOL
+- Has **decidable** reasoning (unlike FOL!)
+- Used as the formal basis for **OWL** (Web Ontology Language)
+
+**ALC = Attributive Language with Complement:**
+
+| Constructor | Syntax | Semantics | Example |
+|-------------|--------|-----------|---------|
+| Top | ⊤ | Everything | The universal concept |
+| Bottom | ⊥ | Nothing | The empty concept |
+| Conjunction | C ⊓ D | Intersection | Student ⊓ Athlete |
+| Disjunction | C ⊔ D | Union | Doctor ⊔ Lawyer |
+| Negation | ¬C | Complement | ¬Student |
+| Existential | ∃R.C | At least one R-filler in C | ∃hasChild.Doctor |
+| Universal | ∀R.C | All R-fillers in C | ∀hasChild.Vaccinated |
+| Subsumption | C ⊑ D | All C are D | Apple ⊑ Fruit |
+
+**DL Concepts vs Roles:**
+- **Concepts** are like unary predicates (sets of individuals)
+- **Roles** are like binary predicates (relationships between individuals)
+- ∀hasSibling.Rich ✅ — concept (value restriction)
+- Teens ⊓ Happy ✅ — concept (conjunction)
+- ¬Doctor ✅ — concept (negation)
+- hasBrother + hasFriend ❌ — NOT a concept (role expression)
+- hasChild + hasChild ⊑ hasGrandchild ❌ — NOT a concept formula
+
+**NNF (Negation Normal Form) in DL:**
+- Push negation inward using:
+  - ¬(C ⊓ D) = ¬C ⊔ ¬D
+  - ¬(C ⊔ D) = ¬C ⊓ ¬D
+  - ¬∀R.C = ∃R.¬C
+  - ¬∃R.C = ∀R.¬C
+  - ¬¬C = C
+
+**DL Representation Patterns:**
+
+> [!IMPORTANT]
+> **DL representation rules:**
+> - **"All A are B"** → A ⊑ B (subsumption)
+> - **"Some A are B"** → A ⊓ B ⊑ ⊤ (equivalent to "A ⊓ B is non-empty")
+> - **"No A are B"** → A ⊓ B ⊑ ⊥ (A and B don't overlap)
+> - **"People whose all children are vaccinated are proactive"** → (People ⊓ ∀hasChild.Vaccinated) ⊑ Proactive
+
+**ALC Tableaux:**
+- Reasoning method for checking satisfiability in ALC
+- Similar to propositional tableaux but with quantifier-like rules
+- Can determine: concept satisfiability, subsumption, instance checking
+
+### Assignment 9 — Complete Q&A with Reasoning
+
+**Q1: In DL, ALC stands for:**
+> **Answer:** Attributive Language with Complement
+> **Why:** A = Attributive, L = Language, C = Complement (negation). NOT "Address Latch Control" or "Arithmetic and Logic Circuit".
+
+**Q2: In DL, which formulas denote concepts?**
+> **Answer:** ∀hasSibling.Rich ✅ + Teens ⊓ Happy ✅ + ¬Doctor ✅
+> **Why:** All three are concept expressions. hasBrother + hasFriend is a role expression (not a concept). hasChild + hasChild ⊑ hasGrandchild is a role inclusion axiom.
+
+**Q3: The NNF of ((Teens ⊓ ∃owns.Apple) ⊔ Happy):**
+> **Answer:** (¬Teens ⊔ (∀owns. ¬Apple) ⊔ Happy) ⊓ (¬Happy ⊔ (Teens ⊓ ∃owns.Apple))
+> **Why:** Apply DL De Morgan's + ¬∃R.C = ∀R.¬C + ¬∀R.C = ∃R.¬C systematically.
+
+**Q4: DL representation of "Some apples are red":**
+> **Answer:** Apple ⊓ Red ⊑ ⊤
+> **Why:** "Some" means the intersection is non-empty. A ⊓ B ⊑ ⊤ means "A ⊓ B is satisfiable" (not empty). NOT "Apple ⊓ Red ⊑ ⊥" (that means NO apples are red!). NOT "Apple ⊑ Red" (that means ALL apples are red).
+
+**Q5: DL representation of "All apples are red":**
+> **Answer:** Apple ⊑ Red
+> **Why:** Subsumption. Every Apple individual is also a Red individual.
+
+**Q6: "People whose all children are vaccinated are proactive":**
+> **Answer:** (People ⊓ ∀hasChild.Vaccinated) ⊑ Proactive
+> **Why:** The subject is "People whose all children are vaccinated" = People ⊓ ∀hasChild.Vaccinated. The predicate is "are proactive" = ⊑ Proactive.
+
+**Q7: ALC KB = {Doctor(Ada), Doctor(Bob), Doctor(Eve), hasChild(Ada,Bob), hasChild(Ada,Eve), hasChild(Bob,Tom)}:**
+> **Answer:** KB ⊨ (∃hasChild.Doctor)(Ada)
+> **Why:** Ada has children Bob and Eve, both are Doctors. So Ada has at least one child who is a Doctor → ∃hasChild.Doctor is satisfied by Ada.
+> KB does NOT entail (∀hasChild.Doctor)(Ada) because Tom is Ada's grandchild via Bob, not directly relevant, but we need to check if ALL Ada's children are doctors. Bob and Eve are both doctors, so ∀hasChild.Doctor(Ada) should also hold. The accepted answer is ∃hasChild.Doctor(Ada).
+
+**Q8: ALC KB = {Parent ≡ ∃hasChild.⊤, OCC ≡ ∀hasChild.Doctor, POCC ⊑ Parent ⊓ OCC, hasChild(Max,Amy), OCC(Max)}:**
+> **Answer:** KB ⊨ Parent(Max) ✅ + KB ⊨ POCC(Max) ✅ + KB ⊨ Doctor(Amy) ✅
+> **Why:** Max has child Amy → Parent(Max). OCC(Max) means all Max's children are doctors → Doctor(Amy). POCC ⊑ Parent ⊓ OCC, and Max is Parent and OCC → POCC(Max).
+
+**Q9: Motivation for small set of predicates (CD theory):**
+> **Answer:** One must define rules to operate on predicates, and one wants to keep the number of rules to a minimum
+> **Why:** Fewer predicates → fewer rules needed → more manageable system.
+
+**Q10: Programs written by Yale group with Roger Schank:**
+> **Answer:** FRUMP ✅ + MARGIE ✅ + QUALM ✅ + BORIS ✅
+> **Why:** These are all Schank's group projects. NOT RETE NET (production system algorithm), NOT SLD RESOLUTION (logic programming), NOT TRUMP (not a program).
+
+**Q11: Conceptual Dependency (CD) theory is:**
+> **Answer:** A representation scheme based on a small set of predicate names ✅ + An attempt to identify a small set of actions for every day world ✅ + An attempt to represent the meaning of natural language words ✅
+> **Why:** CD theory uses ~11 primitive acts to represent ALL actions. It's about meaning representation, not etymology.
+
+---
+
+<a name="week-10"></a>
+## WEEK 10: CONCEPTUAL DEPENDENCY (CD) THEORY & SCRIPTS
+
+### Core Concepts — DEEP DIVE
+
+**CD Theory (Roger Schank):**
+- A theory for representing the meaning of natural language sentences
+- Based on a **small set of primitive actions** (about 11)
+- Key insight: Different sentences can have the SAME underlying meaning (conceptualization)
+
+**A Conceptualization in CD Theory:**
+- The equivalent of a well-formed formula in formal logic
+- A description of a **basic event or action**
+- A description of a **state** in the domain
+
+**CD Theory Components:**
+- **Nominals:** Stand for objects and people
+- **Actions:** Acts done by nominals
+- **States/State-changes:** Conditions/changes
+- A Tamil sentence CAN be mapped to CD theory (language-independent!)
+
+**The 11 CD Primitives — MEMORIZE ALL:**
+
+| Primitive | Meaning | Example Verbs |
+|-----------|---------|---------------|
+| **ATRANS** | Abstract transfer of possession/relationship | give, buy, sell, take, steal |
+| **PTRANS** | Physical transfer of location | go, walk, run, move, fly |
+| **MTRANS** | Mental transfer of information | tell, see, hear, read, learn |
+| **MBUILD** | Building new mental information | decide, think, conclude, imagine |
+| **INGEST** | Taking substances into the body | eat, drink, smoke, breathe |
+| **EXPEL** | Expelling from the body | cry, spit, sweat |
+| **PROPEL** | Applying physical force | push, pull, kick, throw |
+| **MOVE** | Moving a body part | raise hand, nod, wave |
+| **GRASP** | Physically grasping an object | hold, grab, catch |
+| **SPEAK** | Producing sounds | say, scream, sing |
+| **ATTEND** | Focusing sensory attention | look, listen, smell, taste |
+
+**Key CD Action Patterns:**
+- "Buy" = ATRANS (money from buyer to seller) + ATRANS (item from seller to buyer)
+- "Eat" = INGEST (food into body via mouth)
+- "See" = ATTEND (eyes to object) + MTRANS (info to brain)
+- "Tell" = SPEAK + MTRANS (from speaker to listener)
+- "Kill" = state change (alive → dead) — represented as states/causal chains
+- "Remember/Forget" = MTRANS (between memory compartments)
+
+**MARGIE Program:**
+- Processes natural language by:
+  1. Constructing a **syntactic parse tree** of the input sentence
+  2. **Identifying concepts** in the semantic representation
+  3. Making **inferences** commonly associated with the concepts
+
+**ATRANS Program Inferences:**
+- Will infer that the object **has a new owner**
+- Will **identify the giver and the recipient**
+
+**MBUILD:**
+- For representing an actor **making an inference** 
+- Can identify **causal build up** in a story
+
+**Verbs like kill, hate, love:**
+- Represented by **states or state changes** in CD theory
+- Involve a **causal relation** in CD theory
+
+**Verbs like remember, forget:**
+- Refer to movement of information between **different compartments in memory models**
+- Require the use of **MTRANS**
+
+**Scripts (Script Applier Mechanism - SAM):**
+- Stereotypical event sequences (restaurant script, doctor visit script)
+- **ELI module:** Extracts conceptual elements from the story that are explicit
+- **PP-Memory module:** Serves as memory of script/plan roles and props + Matches incoming tokens to expected ones in the script
+
+**Causal Chain Completion:**
+- Inferring **intervening events** that must have taken place between two explicitly mentioned events
+
+### Assignment 10 — Complete Q&A with Reasoning
+
+**Q1: A conceptualization in CD theory is:**
+> **Answer:** The equivalent of a well formed formula in a formal logic ✅ + A description of a basic event or action ✅ + A description of a state in the domain ✅
+> **Why:** NOT "a plan for a goal" — that's planning, not CD. Conceptualizations represent events/states.
+
+**Q2: What holds for CD theory?**
+> **Answer:** Nominals stand for objects and people ✅ + Actions are acts done by nominals ✅ + A Tamil sentence can be mapped to CD theory ✅
+> **Why:** CD is language-independent! NOT "Every verb is a conceptual action" (some verbs are states). NOT "Dependency refers to English grammar" (it's about conceptual dependencies).
+
+**Q3: MARGIE processed a sentence by:**
+> **Answer:** Constructing a syntactic parse tree ✅ + Identifying concepts in semantic representation ✅ + Making inferences commonly associated with concepts ✅
+> **Why:** MARGIE did parsing → conceptual analysis → inference. NOT "exploiting common sense knowledge" directly.
+
+**Q4: ATRANS conceptualization:**
+> **Answer:** Will infer object has a new owner ✅ + Identify the giver and recipient ✅
+> **Why:** ATRANS models transfer of possession. NOT "physically transferred" (that's PTRANS).
+
+**Q5: CD action MBUILD:**
+> **Answer:** Can identify a causal build up in the story ✅ + Can represent an actor making an inference ✅
+> **Why:** MBUILD = mental building of new information. NOT "is a process of building a makelife for the story."
+
+**Q6: "Sneha bought an icecream and ate it" — CD representation:**
+> **Answer:** Two instances of ATRANS ✅ (money transfer + icecream transfer) + PTRANS of icecream ✅ (physical movement) + INGEST by Sneha ✅ (eating)
+> **Why:** "Bought" = ATRANS×2 (money↔icecream). Then bring icecream = PTRANS. "Ate" = INGEST. NOT "implies online transaction" or "mobile phone."
+
+**Q7: Verbs like kill, hate, love:**
+> **Answer:** Represented by states or state changes in CD theory ✅ + Involve a causal relation in CD theory ✅
+> **Why:** "Kill" = cause(alive→dead). "Hate" = negative mental state. These aren't primitive ACTS — they're STATE descriptions or causal chains.
+
+**Q8: Verbs like remember and forget:**
+> **Answer:** Refer to movement of information between different compartments in memory models ✅ + Require the use of CD action MTRANS ✅
+> **Why:** Remember = MTRANS(info, long-term-memory → conscious-processor). Forget = reverse.
+
+**Q9: "Causal chain completion":**
+> **Answer:** Inferring intervening events that must have taken place between two events explicitly mentioned in the story
+> **Why:** If story says "John went to restaurant" then "John ate pizza" — infer: John sat down, looked at menu, ordered, etc.
+
+**Q10: Module ELI in Script Applier Mechanism:**
+> **Answer:** Extracts conceptual elements from the story that are explicit
+> **Why:** ELI (English Language Interpreter) does the initial parsing/extraction.
+
+**Q11: Module PP-Memory in SAM:**
+> **Answer:** Serve as a memory of scriplat roles and props ✅ + To match incoming tokens to expected ones in the script ✅
+> **Why:** PP-Memory stores script expectations and matches incoming story elements to template slots.
+
+---
+
+<a name="week-11"></a>
+## WEEK 11: PLANNING (PAM), FRAMES & INHERITANCE NETWORKS
+
+### Core Concepts — DEEP DIVE
+
+**PAM (Plan Applier Mechanism):**
+- Designed to **understand natural language stories**
+- Works with relations between **goals and plans** of an actor
+- Works with relations between **goals and actions** of an actor
+- PAM explains actions by hypothesizing or matching to known plans
+
+**How PAM explains actions:**
+1. **Hypothesizing** that an action is part of a plan the actor is assumed to have
+2. **Matching** it with an expectation generated by a known plan of the actor
+
+**How PAM explains plans:**
+1. Knowledge of **which goals are achieved** by the plan
+2. Recognizing the plan can be used to **resolve a goal conflict**
+3. Recognizing the plan is used to **resolve goal competition with another actor**
+
+**Frames (Marvin Minsky):**
+- Data structures for representing stereotypical situations
+- **Slots:** Named attributes with fillers (values)
+- **Filler of a slot** can be: a **value**, a **pointer to another individual frame**, a **pointer to a generic frame**, or an **attached procedure**
+- **Inheritance:** Slots inherit default values from parent frames
+
+**Inheritance:**
+- **Strict:** Entity CANNOT override an inherited value
+- **Defeasible:** Entity CAN override inherited values (more common)
+
+**Inheritance Networks:**
+- Graph structures showing IS-A and IS-NOT-A relationships
+- **Edges** represent: a **class-subclass relation** (IS-A)
+- Nodes represent classes/individuals
+
+**Credulous Extensions:**
+- A **subgraph** of the inheritance hierarchy
+- Has a **path from A to every node** in the extension
+- Does **NOT support both** a conclusion C AND ¬C (consistency requirement)
+
+**Admissible Paths & Edges:**
+- An edge is **admissible** if it's not preempted by a more specific edge
+- A path is **admissible** if all its edges are admissible
+- **Redundant edge:** An edge that can be derived from other edges in the network
+
+**Skeptical vs Credulous reasoning:**
+- **Credulous:** Accept ANY consistent extension → may get multiple answers
+- **Skeptical:** Accept only what is common to ALL credulous extensions → more conservative
+
+### Assignment 11 — Complete Q&A with Reasoning
+
+**Q1: The program PAM was designed:**
+> **Answer:** To understand natural language stories ✅ + To work with relations between goals and plans of an actor ✅ + To work with relations between goals and actions of an actor ✅
+> **Why:** PAM = Plan Applier Mechanism. It uses planning knowledge to understand stories. NOT "to apply planning knowledge" directly or "to generate plans."
+
+**Q2: PAM explains actions by:**
+> **Answer:** Hypothesizing it as part of a plan the actor is assumed to have ✅ + Matching it with an expectation generated by a known plan ✅
+> **Why:** PAM has a library of plans and tries to match observed actions to them.
+
+**Q3: PAM explains plans by:**
+> **Answer:** Knowledge of which goals are achieved by the plan ✅ + Recognizing plan can resolve a goal conflict ✅ + Recognizing plan resolves goal competition with another actor ✅
+> **Why:** Plans serve goals — PAM understands this. NOT "by separating the plan into constituent actions" or "by recognizing goal-plan correspondence."
+
+**Q4: The filler of a slot in an individual frame may be:**
+> **Answer:** A value ✅ + A pointer to another individual frame ✅ + A pointer to a generic frame ✅ + Can be an attached procedure ✅
+> **Why:** Frames are very flexible — slots can hold data, references, or even executable procedures (if-needed, if-added demons).
+
+**Q5: Inheritance is said to be strict if:**
+> **Answer:** An entity cannot override an inherited value
+> **Why:** Strict = no exceptions allowed. If Elephant IS-A Grey-Animal, every elephant MUST be grey.
+
+**Q6: Edges in an inheritance hierarchy represent:**
+> **Answer:** A class-subclass relation ✅ + An is-a/subset relation ✅
+> **Why:** Edges encode IS-A relationships (Dog IS-A Animal). NOT "contradictions" or "part-of."
+
+**Q7: Inheritance hierarchy with conclusions C and ¬C:**
+> **Answer:** Can have conclusion "A is a C" ✅ + Can have conclusion "A is not C" ✅ + Can have BOTH conclusions ✅
+> **Why:** Ambiguous networks can support contradictory paths. This is why we need credulous/skeptical reasoning.
+
+**Q8: A credulous extension:**
+> **Answer:** Is a subgraph of the inheritance hierarchy ✅ + Has a path from A to every node in the extension ✅ + Does NOT support both a conclusion C and ¬C ✅
+> **Why:** Credulous extensions are CONSISTENT subsets. Each one is internally consistent, but different extensions may disagree.
+
+**Q9-Q10: Admissible edges and redundant edges (graph):**
+> **Answer for admissible:** a→B, a→¬B, B→C, B→¬C, D→E, etc.
+> **Answer for redundant:** None of the above (no redundant edges)
+> **Why:** An edge is redundant only if it can be derived from transitivity of other edges. In the given graph, no edges are redundant.
+
+**Q11: Admissible paths:**
+> **Answer:** a, B, C, D, E ✅ + a, B, ¬C ✅ + a, B, ¬C, D ✅ + a, ¬B, ¬C, D, E ✅
+
+**Q12: Beliefs that hold for 'a':**
+> **Answer:** a→E ✅ + a→¬C ✅ + a→D ✅
+> **Why:** Follow all admissible paths from 'a' and collect endpoints/conclusions.
+
+---
+
+<a name="week-12"></a>
+## WEEK 12: DEFAULT REASONING, EVENT CALCULUS & EPISTEMIC LOGIC
+
+### Core Concepts — DEEP DIVE
+
+**Non-Monotonic Reasoning:**
+- Classical logic is **monotonic**: new info never invalidates old conclusions
+- Real world needs **non-monotonic reasoning**: "Birds fly" + "Tweety is a penguin" → Tweety doesn't fly
+- Solutions: Default Logic, Circumscription, Closed World Assumption
+
+**Circumscription:**
+- **Minimize abnormality**: Assume things are normal unless told otherwise
+- Ab(x) = "x is abnormal"
+- Default: ∀x(Bird(x) ∧ ¬Ab(x) ⊃ Flies(x))
+- If penguin → Ab, then penguins don't fly
+
+**Closed World Assumption (CWA):**
+- If it's not provable, assume it's FALSE
+- Used in databases
+
+**Generalized CWA (GCWA):**
+- Extension of CWA for disjunctive information
+- More careful about what to assume false
+
+**Default Logic (Raymond Reiter):**
+- **Default rule:** A : B₁, ..., Bₙ / C
+  - If A is known (prerequisite)
+  - And B₁, ..., Bₙ are all consistent with what is known (justifications)
+  - Then conclude C (consequent)
+- **Extension:** A maximal consistent set of conclusions obtainable by applying defaults
+- Multiple extensions possible → ambiguity!
+- We provide a mechanism for specifying explicitly which statements should be added to KB when consistent to do so
+
+**Key Default Logic vs Circumscription:**
+- Default Logic: provides mechanism for specifying explicitly which statements to add when consistent
+- Circumscription: minimizes only the abnormal predicates
+
+**Event Calculus:**
+- A formalism for reasoning about events and their effects over time
+
+| Predicate | Meaning |
+|-----------|---------|
+| **Happens(a, t)** | Action a occurs at time t |
+| **HoldsAt(f, t)** | Fluent f is true at time t |
+| **Initiates(a, f, t)** | Action a starts fluent f at time t |
+| **Terminates(a, f, t)** | Action a ends fluent f at time t |
+| **Clipped(t1, f, t2)** | Fluent f is terminated between t1 and t2 |
+| **Initially(f)** | Fluent f is true at time 0 |
+
+**Key Event Calculus Axiom (Persistence):**
+- If Initially(f) and NOT Clipped(0, f, t), then HoldsAt(f, t)
+- If Happens(a, t1) ∧ Initiates(a, f, t1) ∧ ¬Clipped(t1, f, t), then HoldsAt(f, t) for t > t1
+- If Happens(a, t1) ∧ Terminates(a, f, t1), then ¬HoldsAt(f, t) for t > t1 (unless re-initiated)
+
+**The Frame Problem:**
+- **What is it?** The problem of determining which fluents **remain unchanged** when an action occurs
+- Also: The problem of deciding which fluents remain/become true at **future time instances**
+- **Solution:** Event Calculus handles this via the Clipped predicate and frame axioms
+
+**Epistemic Logic:**
+- Logic of knowledge and belief
+- K_a P = "Agent a knows P"
+- B_a P = "Agent a believes P"
+- K_putin K_biden P = "Putin knows that Biden knows P"
+- K_putin ¬K_biden P = "Putin knows that Biden doesn't know P"
+
+**Muddy Children Problem:**
+- Classic epistemic logic puzzle
+- n children, some muddy, can see others but not themselves
+- Father asks "Does anyone know if they're muddy?"
+- After k rounds of "No", children with mud learn they're muddy
+- For 4 children where some are muddy/not muddy: minimum questions = depends on number of muddy children
+
+### Assignment 12 — Complete Q&A with Reasoning
+
+**Q1: Definitely universally true statements:**
+> **Answer:** Men are mortal ✅ + Birds are two-legged, egg-laying creatures that have beaks ✅
+> **Why:** These are biological facts. "Bats fly" is generally true. "Politicians are honest" is NOT universally true. "Indian trains run on time" is NOT universally true.
+
+**Q2: GCWA for KB = {p ⊃ q ∨ r, q ∨ ¬r}:**
+> **Answer:** Check which literals are entailed under GCWA.
+> **Why:** Under GCWA, we minimize what is true (close world) but carefully with disjunctions. Neither p nor ¬q / Both p and ¬q — depends on specific analysis.
+
+**Q3: Minimal model for circumscription (Birds, penguins, canaries):**
+> **Answer:** Ab(chilly) ∧ ¬Ab(tweety)
+> **Why:** Chilly is a penguin (abnormal → doesn't fly). Tweety is a canary (normal → flies). We minimize Ab.
+
+**Q4: Models in the KB for the CB:**
+> Check each candidate set against the Circumscription-based KB.
+
+**Q5: KB about birds, penguins, flying:**
+> **Answer:** It is unable to conclude that Peppy cannot fly
+> **Why:** If Peppy's status is unknown (no info about being penguin), circumscription can't conclude Peppy can't fly.
+
+**Q6: True statements about Default Logic vs Circumscription:**
+> **Answer:** In Default logic, we provide a mechanism for specifying explicitly which statements should be added to the KB when it is consistent to do so ✅ + In Circumscription, we minimize only the abnormal predicates ✅
+> **Why:** Default logic = explicit defaults. Circumscription = minimize abnormality.
+
+**Q7: Default theory extensions:**
+> **Answer:** {Egg-layer(tweety), Egg-layer(cot), ¬Bird(cot), Female(tweety), Female(cot), Bird(city)}
+> **Why:** Apply default rules as much as consistently possible. The extension is the maximal consistent set.
+
+**Q8: Stable sets for default theory:**
+> **Answer:** F = {Bird(cot)} + F = {Bird(cot), Bird(tweety)} + F = {Bird(tweety)} + None of the above
+> Determine which sets serve as stable fixed points of the default operator.
+
+**Q9: Given Initiates(x,f,t) — Discrete Event Calculus:**
+> **Answer:** When action a Happens at time t1 = 1 ✅ + When action a Happens at time β1 = 5 and t is not Clipped between β1 = 5 and t1 ✅ + When f was true initially and t is not Clipped between 0 and t ✅
+> **Why:** HoldsAt relies on Initiates + not Clipped.
+
+**Q10: Russian forces narrative (Discrete Event Calculus):**
+> **Answer:** Happens(Invasion(russia, ukraine, !!)) ✅ + Happens(Bomb(bomb, ukraine, maternity-Hospital, t2)) ✅ + Additional DEC entailments
+> **Why:** Formalize the narrative using Happens, Initiates, Terminates, HoldsAt.
+
+**Q11: The Frame Problem in Event Calculus:**
+> **Answer:** The problem of deciding which fluents remain/become true at future time instances
+> **Why:** Frame problem = everything NOT mentioned as changed should STAY the same. Event Calculus solves this with persistence axioms and Clipped.
+
+**Q12: "Putin is going to attack Ukraine" — epistemic logic:**
+> **Answer:** Putin knows that Biden considers it possible that P
+> **Why:** K_putin (¬K_biden ¬P) = Putin knows that Biden doesn't know ¬P = Putin knows Biden considers P possible.
+
+**Q13: 4 children (Aman, Bindu, Charu, Deep) — minimum questions:**
+> **Answer:** 3
+> **Why:** In the muddy children problem with n muddy children, you need n rounds of asking. With specific configurations, analyze how many "No" answers before someone can deduce.
+
+---
+
+<a name="cheat-sheet"></a>
+## MASTER CHEAT SHEET — LAST MINUTE REVISION
+
+### 1. FOL Quantifier Patterns (MOST TESTED!)
+
+| English Statement | FOL Representation | Connector Used |
+|---|---|---|
+| All X are Y | ∀x (X(x) ⊃ Y(x)) | IMPLICATION |
+| Some X are Y | ∃x (X(x) ∧ Y(x)) | CONJUNCTION |
+| No X are Y | ∀x (X(x) ⊃ ¬Y(x)) | IMPLICATION + NEG |
+| Only X are Y | ∀x (Y(x) ⊃ X(x)) | REVERSED IMPLICATION |
+| Not all X are Y | ∃x (X(x) ∧ ¬Y(x)) | ∃ + CONJUNCTION |
+
+> [!CAUTION]
+> **"All" uses IMPLICATION (⊃), "Some" uses CONJUNCTION (∧)** — The #1 most common mistake on the exam!
+
+### 2. DL ↔ FOL Correspondence
+
+| DL | FOL | English |
+|----|-----|---------|
+| A ⊑ B | ∀x(A(x) ⊃ B(x)) | All A are B |
+| A ⊓ B ⊑ ⊤ | ∃x(A(x) ∧ B(x)) | Some A are B |
+| A ⊓ B ⊑ ⊥ | ¬∃x(A(x) ∧ B(x)) | No A are B |
+| ∃R.C | ∃y(R(x,y) ∧ C(y)) | Has some R-filler in C |
+| ∀R.C | ∀y(R(x,y) ⊃ C(y)) | All R-fillers are in C |
+
+### 3. Truth Table — P ⊃ Q (MEMORIZE THIS ONE ROW!)
+
+| P | Q | P ⊃ Q | Key Fact |
+|---|---|-------|----------|
+| T | T | T | |
+| **T** | **F** | **F** | **← ONLY FALSE case!** |
+| F | T | T | |
+| F | F | T | |
+
+### 4. Skolemization Rules
+
+| Scenario | Replace ∃x with | Example |
+|----------|-----------------|---------|
+| ∃x NOT under any ∀ | Skolem CONSTANT (sk) | ∃x P(x) → P(sk1) |
+| ∃x under ∀y | Skolem FUNCTION sk(y) | ∀y∃x P(x,y) → P(sk1(y), y) |
+| ∃x under ∀y∀z | Skolem FUNCTION sk(y,z) | ∀y∀z∃x P(x,y,z) → P(sk1(y,z), y, z) |
+
+### 5. Resolution Refutation Steps
+1. Convert KB to clause form (CNF, Skolemize)
+2. **Negate** the goal
+3. Convert negated goal to clause form
+4. Add to KB
+5. Resolve pairs → find complementary literals → derive resolvent
+6. Empty clause □ = **PROVED!**
+
+### 6. CD Theory Primitives — Quick Reference
+
+| Physical Acts | Mental Acts | Other Acts |
+|--------------|-------------|------------|
+| PTRANS (move location) | MTRANS (transfer info) | ATRANS (transfer possession) |
+| PROPEL (apply force) | MBUILD (create info) | INGEST (take in body) |
+| MOVE (move body part) | ATTEND (focus sense) | EXPEL (from body) |
+| GRASP (grab object) | | SPEAK (make sound) |
+
+### 7. Event Calculus Predicates
+
+| Predicate | What it means |
+|-----------|---------------|
+| Happens(a, t) | Action a occurs at time t |
+| HoldsAt(f, t) | Fluent f is true at time t |
+| Initiates(a, f, t) | Action a makes f true at t |
+| Terminates(a, f, t) | Action a makes f false at t |
+| Clipped(t1, f, t2) | f terminated between t1 and t2 |
+| Initially(f) | f true at time 0 |
+
+### 8. Prolog Key Rules
+
+| Concept | Rule |
+|---------|------|
+| Search strategy | Depth-first, left-to-right |
+| Cut (!) | Prevents backtracking past cut |
+| Green cut | Doesn't change behavior |
+| Red cut | Changes behavior/solutions |
+| Negation `\+` | Succeeds when proof FAILS |
+| Tabling | Memoization, prevents infinite loops |
+
+### 9. Knowledge Representation Hierarchy
+
+| Formalism | Expressiveness | Decidability | Key Feature |
+|-----------|---------------|-------------|-------------|
+| Propositional Logic | Low | **Decidable** | Truth tables |
+| Description Logic (ALC) | Medium | **Decidable** | Tableau reasoning |
+| First-Order Logic | High | **Semi-decidable** | Quantifiers + predicates |
+| Higher-Order Logic | Very High | **Undecidable** | Quantify over predicates |
+
+### 10. Non-Monotonic Reasoning Summary
+
+| Approach | Key Idea | Mechanism |
+|----------|----------|-----------|
+| CWA | What's not known is false | Negation as failure |
+| Circumscription | Minimize abnormality | Ab predicate minimization |
+| Default Logic | Explicit default rules | A:B/C (prerequisite:justification/consequent) |
+
+### 11. Key Trick Question Answers
+
+| Question | Answer | Why |
+|----------|--------|-----|
+| Resolution always terminates in FOL? | **NO** | FOL is semi-decidable |
+| All FOL ⊇ Horn Clauses? | **NO** | Disjunctive facts can't be Horn |
+| SLD resolution always terminates? | **NO** | Can loop on recursion |
+| Is PL decidable? | **YES** | Finite truth tables |
+| Is FOL decidable? | **NO** | Semi-decidable only |
+| Forward chaining sound? | **YES** | Derives only valid conclusions |
+| Backward chaining sound? | **YES** | Derives only valid conclusions |
+| FOL monotonic? | **YES** | New info can't invalidate old |
+| Default Logic monotonic? | **NO** | New defaults can retract |
+| Can FOL do non-monotonic? | **NO** | Need extensions |
+| Sound ⊃ complete? | **NO** | Independent properties |
+| Complete ⊃ sound? | **NO** | Independent properties |
+
+### 12. Inference Rules — Quick Reference
+
+| Rule | From | Derive |
+|------|------|--------|
+| Modus Ponens | p, p⊃q | q |
+| Modus Tollens | ¬q, p⊃q | ¬p |
+| Hypothetical Syllogism | p⊃q, q⊃r | p⊃r |
+| Disjunctive Syllogism | p∨q, ¬p | q |
+| Resolution | p∨q, ¬p∨r | q∨r |
+| Universal Instantiation | ∀xP(x) | P(a) for any a |
+| Existential Generalization | P(a) | ∃xP(x) |
+
+### 13. Frame Problem & Inheritance
+
+| Concept | Definition |
+|---------|-----------|
+| Frame Problem | Which fluents stay unchanged when an action occurs? |
+| Strict Inheritance | Cannot override inherited values |
+| Credulous Extension | Any ONE consistent extension (may have multiple) |
+| Skeptical Extension | Only what ALL credulous extensions agree on |
+| Admissible Edge | Not preempted by a more specific edge |
+| Redundant Edge | Derivable from other edges (can be removed) |
+
+---
+
+<a name="strategy"></a>
+## TIPS, TRICKS & EXAM-DAY STRATEGY
+
+### Tier 1: HIGHEST PRIORITY Topics (Study First!)
+
+> [!IMPORTANT]
+> **These topics appear in EVERY exam:**
+> 1. **FOL Representation** — "All/Some/No X are Y" patterns (Weeks 4, 8)
+> 2. **Resolution Refutation** — Converting to clause form, resolving (Week 5)
+> 3. **DL/ALC** — Concept representation, subsumption (Week 9)
+> 4. **CD Theory Primitives** — Match verbs to primitives (Week 10)
+> 5. **Event Calculus** — Predicates and their meanings (Week 12)
+
+### Tier 2: HIGH PRIORITY (Study Next)
+
+- Prolog execution tracing (Week 6-7)
+- Inheritance Networks — admissible paths/edges (Week 11)
+- Default Logic vs Circumscription (Week 12)
+- Horn Clauses and SLD Resolution properties (Week 6)
+
+### Tier 3: MEDIUM PRIORITY (Review Last)
+
+- RDF/RDFS basics (Week 8)
+- Winograd Schema (Week 1)
+- Tableau Method details (Week 3)
+- Soundness vs Completeness (Week 2)
+
+### Common Exam Traps to AVOID
+
+> [!WARNING]
+> **Trap 1:** ∀x(Apple(x) ∧ Red(x)) ≠ "All apples are red" — this says EVERYTHING is a red apple!  
+> **Trap 2:** ∃x(Apple(x) ⊃ Red(x)) is trivially true — ANY non-apple makes it true!  
+> **Trap 3:** Resolution DOES NOT always terminate in FOL  
+> **Trap 4:** SLD Resolution DOES NOT always terminate  
+> **Trap 5:** NOT all FOL formulas can be expressed as Horn Clauses  
+> **Trap 6:** Sound ≠ Complete (they are independent properties!)  
+> **Trap 7:** ¬∀x P(x) ≡ ∃x ¬P(x) (NOT ∀x ¬P(x)!)  
+> **Trap 8:** Strict inheritance means CANNOT override (not "can")  
+> **Trap 9:** Credulous extensions are individually consistent, but different ones may disagree  
+> **Trap 10:** Frame Problem = what stays the SAME, not what changes
+
+### Speed Solving Techniques
+
+1. **For "All/Some" FOL questions:** Just remember All→⊃, Some→∧. Done in 5 seconds.
+2. **For DL questions:** Convert to FOL mentally: ⊑ = ⊃, ⊓ = ∧, ⊔ = ∨
+3. **For CD theory:** Ask "Does it involve transfer? Physical movement? Mental info? Eating?" → maps directly to ATRANS/PTRANS/MTRANS/INGEST
+4. **For Resolution:** Always negate the goal first! If you get □, it's proved.
+5. **For Validity questions (Y/N):** Check if the argument form is: p⊃q, ¬q ⊢ ¬p (Modus Tollens = Y) vs p⊃q, ¬q... does it follow? Check truth table.
+6. **For Prolog tracing:** Go top-down, left-to-right, match rules in order, backtrack on failure.
+7. **For Event Calculus:** Draw a timeline! Mark when actions happen, what they initiate/terminate.
+8. **For Default Logic:** Apply each default: check if prerequisite known AND justification consistent.
+
+### Last-Minute Memory Aids
+
+**"All Smart Students Pass" → ∀⊃**  
+(All → For All → Implication: ∀x(Student(x) ⊃ Pass(x)))
+
+**"Some Cool People Dance" → ∃∧**  
+(Some → Exists → Conjunction: ∃x(Cool(x) ∧ Dance(x)))
+
+**CD PRIMITIVES "A PM MIG ESP":**  
+**A**TRANS, **P**TRANS, **M**TRANS, **M**BUILD, **I**NGEST, **G**RASP, **E**XPEL, **S**PEAK, **P**ROPEL + MOVE + ATTEND
+
+**Event Calculus "HIT CHI":**  
+**H**appens, **I**nitiates, **T**erminates, **C**lipped, **H**oldsAt, **I**nitially
+
+---
+
+*You've got this! Remember: most questions repeat from assignments. Focus on understanding WHY each answer is correct, and you'll handle any variant they throw at you!*
